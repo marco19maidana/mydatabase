@@ -8,12 +8,12 @@ import mysql.connector
 mydb = mysql.connector.connect(host='localhost', port=3306, user="root", password='unbekannt',
                                database='lampedusa_airlines_db')
 cursor = mydb.cursor()
-# Datenausgabe einer gewünschten Tabelle
+# data output of a wished table
 'SELECT f.FlugNr, s.Stadtname, f.StartAbflug, zo.Stadtname, f.ZielAnkunft FROM flug f INNER JOIN Ort so ON f.StartOrtId = so.OrtId'
 'INNER JOIN Ort zo ON f.ZielOrtId = zo.OrtId' \
 'ORDER BY f.StartAbflug'
 # sql = "SELECT * FROM Flug"
-# Die Orttabelle ist dieselbe Tabelle wird aber behandelt wie zwei verschiedene
+# ort table is the same but is treated as two different
 sql = 'SELECT f.FlugNr, so.Stadtname, f.StartAbflug, zo.Stadtname, f.ZielAnkunft FROM flug f INNER JOIN Ort so ON f.StartOrtId = so.OrtId INNER JOIN Ort zo ON f.ZielOrtId = zo.OrtId ORDER BY f.StartAbflug'
 cursor.execute(sql)
 rows = cursor.fetchall()
